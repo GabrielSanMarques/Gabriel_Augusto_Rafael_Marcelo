@@ -184,6 +184,7 @@ function fimDoJogo() {
     pontos < 2 ? pont = 'ponto' : pont = 'pontos'
 
     pergunta.textContent = "Você conseguiu " + pontos + " " + pont
+    numQuestao.classList.add('bloqueado')
 
     aviso.textContent = "Fim do Quiz!"
     bloquearAlternativas();
@@ -200,11 +201,7 @@ function fimDoJogo() {
     d.setAttribute('value', '0')
     e.setAttribute('value', '0')
 
-    // OCULTAR O ARTICLE DA QUESTAO
-    articleQuestoes.style.display = 'none'
-
     setTimeout(function() {
-        pontos = 0 // zerar placar
-        location.reload();
-    }, 2000)
+        window.location.href = "index.html";
+    }, 5000)
 }
