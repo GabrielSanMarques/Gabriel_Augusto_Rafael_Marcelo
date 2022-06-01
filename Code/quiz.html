@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/quiz.css" type="text/css">
+    <title>Quiz</title>
+</head>
+<body>
+    
+    <header>
+        <h1>Quiz: <span>Lei dos Senos</span></h1>
+    </header>
+
+    <main>
+
+        <article class="questoes">
+
+            <header class="questao">
+                <span id="numQuestao"></span>
+                <h5 id="pergunta">Pergunta</h5>
+            </header>
+
+            <div class="corpo">
+                <ol id="alternativas" type='a'>
+                    <li id='a' value='1A' class='respostas' onClick='verificarSeAcertou(this, this)'>Alternativa A</li>
+                    <li id='b' value='1B' class='respostas' onClick='verificarSeAcertou(this, this)'>Alternativa B</li>
+                    <li id='c' value='1C' class='respostas' onClick='verificarSeAcertou(this, this)'>Alternativa C</li>
+                    <li id='d' value='1D' class='respostas' onClick='verificarSeAcertou(this, this)'>Alternativa D</li>
+                    <li id='e' value='1E' class='respostas' onClick='verificarSeAcertou(this, this)'>Alternativa E</li>
+                </ol>
+            </div>
+
+        </article>
+
+        <footer class="avisos">
+            <h3 id="aviso"></h1>
+        </footer>
+
+    </main>
+
+    <script src="quiz.js"></script>
+
+</body>
+</html>
