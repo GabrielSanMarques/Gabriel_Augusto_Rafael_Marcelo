@@ -111,11 +111,11 @@ function proximaQuestao(nQuestao) {
     c.textContent = questoes[nQuestao].alternativaC
     d.textContent = questoes[nQuestao].alternativaD
     e.textContent = questoes[nQuestao].alternativaE
-    a.setAttribute('value', nQuestao+'A')
-    b.setAttribute('value', nQuestao+'B')
-    c.setAttribute('value', nQuestao+'C')
-    d.setAttribute('value', nQuestao+'D')
-    e.setAttribute('value', nQuestao+'E')
+    a.setAttribute('value', nQuestao+'a')
+    b.setAttribute('value', nQuestao+'b')
+    c.setAttribute('value', nQuestao+'c')
+    d.setAttribute('value', nQuestao+'d')
+    e.setAttribute('value', nQuestao+'e')
 }
 
 function bloquearAlternativas() {
@@ -153,6 +153,7 @@ function verificarSeAcertou(nQuestao, resposta) {
         aviso.textContent = "Reposta certa!"
         pontos += 1 // pontos = pontos + 10
     } else {
+        aviso.classList.add('errada');
         tempo_delay = 5000;
         aviso.textContent = `
             Reposta Errada!
@@ -166,6 +167,7 @@ function verificarSeAcertou(nQuestao, resposta) {
     setTimeout(function() {
         //respostaEsta.textContent = '...'
         proxima = numeroDaQuestao+1
+        aviso.classList.remove('errada');
         desbloquearAlternativas()
 
         if(proxima > totalDeQuestoes) {
