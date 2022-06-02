@@ -185,7 +185,7 @@ function fimDoJogo() {
     let pont = ''
     pontos < 2 ? pont = 'ponto' : pont = 'pontos'
 
-    pergunta.textContent = "Você conseguiu " + pontos + " " + pont
+    pergunta.textContent = `Você conseguiu ${pontos} ${pont}!`
     numQuestao.classList.add('bloqueado')
 
     aviso.textContent = "Fim do Quiz!"
