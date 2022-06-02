@@ -43,12 +43,12 @@ main{
     justify-content: left;
 }
 
-.questoes ol li:hover {
+.questoes ul li:hover {
     background: lightgreen;
     cursor: pointer;
 }
 
-.questoes ol li{
+.questoes ul li{
     padding: 8px;
     font-size: 20px;
 }
