@@ -1,6 +1,6 @@
 
 function Usuario(){
-    this.id = 0;
+    this.id = 2001;
     this.senha = 'senha';
     this.email = 'a';
     this.nivel = 0;
@@ -15,10 +15,26 @@ function Usuario(){
     this.listaItens = [];
     this.listaConquistas = [];
     this.listaAnotacoes = [];
+    
 
-    function Cadastrar(){}
+    function CriarUsuario(usuario){
+        const db_Usuarios = JASON.parce(localStorage.getItem('db_Usuarios')) ?? []
+        db_Usuarios.push(usuario)
+        localStorage.setItem("db_Usuarios",JSON.stringify(db_Usuarios))
+    }
 
-    function Remover(){}
+    function LerUsuario(){JASON.parce(localStorage.getItem('db_Usuarios')) ?? []}
+
+    function Remover(usuario){
+        const db_Usuarios = LerUsuario()
+        db_Usuarios.splice(usuario.id,1)
+        setLocalStorage(db_Usuarios)
+    }
+
+    function Update(usuario){
+            const db_Usuarios = LerUsuario();
+            db_Usuarios[usuario.id] = usuario
+    }       setLocalStorage(db_Usuarios)
 
     function RealizarLogin(_login, _senha){
         if(_login === this.login && _senha === this.senha)
@@ -92,3 +108,5 @@ function Usuario(){
 
     function FazerAnotacao(idLicao, texto){}
 }
+
+module.exports = Usuario;

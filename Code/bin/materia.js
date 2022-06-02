@@ -4,16 +4,23 @@ function Materia(){
     this.descricao = descricao;
     this.explicacao = explicacao;
 
-    function Cadastrar(){
+    function CriarMateria(materia){
+        const db_Materias = JASON.parce(localStorage.getItem('db_Materias')) ?? []
+        db_Materias.push(materia)
+        localStorage.setItem("db_Materias",JSON.stringify(db_Materias))
+    }
 
+    function LerMateria(){JASON.parce(localStorage.getItem('db_Materias')) ?? []}
+
+    function Remover(materia){
+        const db_Materias = LerMateria()
+        db_Materias.splice(materia.id,1)
+        setLocalStorage(db_Materias)
     }
-    function Remover(){
-        
-    }
-    function Recuperar(){
-        
-    }
-    function Modificar(){
-        
-    }
+
+    function Update(materia){
+            const db_Materias = LerMateria();
+            db_Materias[materia.id] = materia
+    }       setLocalStorage(db_Materias)
+
 }

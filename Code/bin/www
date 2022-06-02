@@ -4,9 +4,16 @@
  * Module dependencies.
  */
 
+let Usuario = require('./usuario')
 var app = require('../app');
 var debug = require('debug')('precalc:server');
 var http = require('http');
+
+console.log(Usuario);
+
+app.get('/', () => {
+  return 'Ola'
+})
 
 /**
  * Get port from environment and store in Express.
