@@ -2,9 +2,8 @@ var express = require("express");
 var router = express.Router();
 
 router.post("/", (req, res) => {
-  if (req.body.email === login && req.body.senha === senha) {
-    req.session.email = login;
-    res.render("index");
+  if (req.body.logar) {
+    res.render("logar");
   } else {
     res.render("criar_conta");
   }
