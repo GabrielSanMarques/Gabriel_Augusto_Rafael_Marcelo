@@ -11,10 +11,6 @@ var http = require('http');
 
 console.log(Usuario);
 
-app.get('/', () => {
-  return 'Ola'
-})
-
 /**
  * Get port from environment and store in Express.
  */
