@@ -1,6 +1,6 @@
 
 function Usuario(){
-    this.id = 2001;
+    this.id = 00;
     this.senha = 'senha';
     this.email = 'a';
     this.nivel = 0;
@@ -18,12 +18,12 @@ function Usuario(){
     
 
     function CriarUsuario(usuario){
-        const db_Usuarios = JASON.parce(localStorage.getItem('db_Usuarios')) ?? []
+        const db_Usuarios = JSON.parce(localStorage.getItem('db_Usuarios')) ?? []
         db_Usuarios.push(usuario)
         localStorage.setItem("db_Usuarios",JSON.stringify(db_Usuarios))
     }
 
-    function LerUsuario(){JASON.parce(localStorage.getItem('db_Usuarios')) ?? []}
+    function LerUsuario(){JSON.parce(localStorage.getItem('db_Usuarios')) ?? []}
 
     function Remover(usuario){
         const db_Usuarios = LerUsuario()
