@@ -1,18 +1,22 @@
 var express = require("express");
 var router = express.Router();
 
-router.post("/", (req, res) => {
-  if (req.body.logar) {
-    res.render("logar");
+var senha = "aaa";
+var login = "aaa";
+
+router.post("/logar", (req, res) => {
+  if (req.body.login === login && req.body.passoword === senha) {
+    req.session.login = login;
+    res.render("inicial");
   } else {
-    res.render("criar_conta");
+    res.render("index");
   }
 });
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
+router.get("/logar", function (req, res, next) {
   if (req.session.email) {
-    res.render("inicial");
+    res.render("index");
   } else {
     res.render("index");
   }

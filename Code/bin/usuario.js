@@ -1,133 +1,143 @@
+//import Endereco from "./endereco.js";
 
-function Usuario() {
-    this.id = 00;
-    this.senha = 'senha';
-    this.email = 'a';
-    this.nivel = 0;
-    this.cristais = 0;
-    this.xp = 0;
-    this.endereco = new Endereco();
-    this.cpf = '000.000.000-00';
-    this.telefone = '(00) 0000-0000';
-    this.certificado = null;
-    this.licoesRealizadas = []; //lista com o codigo das licoes ja realizadas
-    this.listaAmigos = []; //lista com o id de todos os amigos do usuario
-    this.listaItens = [];
-    this.listaConquistas = [];
-    this.listaAnotacoes = [];
+const Usuario = function () {
+  this.id = 0;
+  this.senha = "senha";
+  this.email = "a";
+  this.nivel = 0;
+  this.cristais = 0;
+  this.xp = 0;
+  this.endereco = new Endereco();
+  this.cpf = "000.000.000-00";
+  this.telefone = "(00) 0000-0000";
+  this.certificado = null;
+  this.licoesRealizadas = []; //lista com o codigo das licoes ja realizadas
+  this.listaAmigos = []; //lista com o id de todos os amigos do usuario
+  this.listaItens = [];
+  this.listaConquistas = [];
+  this.listaAnotacoes = [];
 
+  function CriarUsuario(
+    email,
+    senha,
+    cpf = undefined,
+    telefone = undefined,
+    rua = undefined,
+    num = undefined,
+    complemento = undefined,
+    cidade = undefined,
+    estado,
+    cep = undefined
+  ) {
+    const db_Usuarios = JSON.parse(localStorage.getItem("db_Usuarios")) ?? [];
+    db_Usuarios.push(usuario);
+    localStorage.setItem("db_Usuarios", JSON.stringify(db_Usuarios));
 
-    function CriarUsuario(email, senha, cpf = undefined, telefone = undefined, rua = undefined,
-        num = undefined, complemento = undefined, cidade = undefined, estado, cep = undefined) {
+    this.id = Math.random() * 100; //gera um id aleatório entre 0 e 99, verificar se este id já existe no BD e inseri-lo
+    this.email = email;
+    this.senha = senha;
+    this.cpf = cpf;
+    this.telefone = telefone;
+    this.endereco.rua = rua;
+    this.endereco.num = num;
+    this.endereco.complemento = complemento;
+    this.endereco.cidade = cidade;
+    this.endereco.estado = estado;
+    this.endereco.cep = cep;
+  }
 
-        const db_Usuarios = JSON.parse(localStorage.getItem('db_Usuarios')) ?? []
-        db_Usuarios.push(usuario)
-        localStorage.setItem("db_Usuarios", JSON.stringify(db_Usuarios))
-        
-        this.id = Math.random() * 100; //gera um id aleatório entre 0 e 99, verificar se este id já existe no BD e inseri-lo
-        this.email = email;
-        this.senha = senha;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.endereco.rua = rua;
-        this.endereco.num = num;
-        this.endereco.complemento = complemento;
-        this.endereco.cidade = cidade;
-        this.endereco.estado = estado;
-        this.endereco.cep = cep;
-    }
+  function validarEmail(email) {
+    //if(nao existe){
+    this.email = email; //verificar se existe no DB
+    return true;
+    //else {return false}
+  }
 
-    function validarEmail(email){
-        //if(nao existe){
-            this.email = email; //verificar se existe no DB
-            return true;
-        //else {return false}
-    }
+  function LerUsuario() {
+    JSON.parse(localStorage.getItem("db_Usuarios")) ?? [];
+  }
 
-    function LerUsuario() { JSON.parse(localStorage.getItem('db_Usuarios')) ?? [] }
+  function Remover(usuario) {
+    const db_Usuarios = LerUsuario();
+    db_Usuarios.splice(usuario.id, 1);
+    setLocalStorage(db_Usuarios);
+  }
 
-    function Remover(usuario) {
-        const db_Usuarios = LerUsuario()
-        db_Usuarios.splice(usuario.id, 1)
-        setLocalStorage(db_Usuarios)
-    }
+  function Update(usuario) {
+    const db_Usuarios = LerUsuario();
+    db_Usuarios[usuario.id] = usuario;
+  }
+  setLocalStorage(db_Usuarios);
 
-    function Update(usuario) {
-        const db_Usuarios = LerUsuario();
-        db_Usuarios[usuario.id] = usuario
-    } setLocalStorage(db_Usuarios)
+  function RealizarLogin(_login, _senha) {
+    if (_login === this.login && _senha === this.senha) return true;
+    return false;
+  }
 
-    function RealizarLogin(_login, _senha) {
-        if (_login === this.login && _senha === this.senha)
-            return true;
-        return false;
-    }
+  function AlterarSenha(senhaAntiga, novaSenha) {}
 
-    function AlterarSenha(senhaAntiga, novaSenha) { }
+  function AlterarEmail(emailAntigo, novoEmail) {
+    if (this.email === emailAntigo) this.email = novoEmail;
+  }
 
-    function AlterarEmail(emailAntigo, novoEmail) {
-        if (this.email === emailAntigo)
-            this.email = novoEmail;
-    }
+  function AlterarTelefone(novoTelefone) {
+    this.telefone = novoTelefone;
+  }
 
-    function AlterarTelefone(novoTelefone) {
-        this.telefone = novoTelefone;
-    }
+  function AlterarEndereco() {}
 
-    function AlterarEndereco() { }
+  function SubirNivel() {
+    this.nivel = this.nivel + 1;
+  }
 
-    function SubirNivel() {
-        this.nivel = this.nivel + 1;
-    }
+  function GanharCristais(quantidade) {
+    this.cristais = this.cristais + quantidade;
+  }
 
-    function GanharCristais(quantidade) {
-        this.cristais = this.cristais + quantidade;
-    }
+  function GanharXp(quantidade) {
+    this.xp = this.xp + quantidade;
+  }
 
-    function GanharXp(quantidade) {
-        this.xp = this.xp + quantidade;
-    }
+  function RealizarLicao(idLicao) {
+    this.licoesRealizadas.push(idLicao);
+  }
 
-    function RealizarLicao(idLicao) {
-        this.licoesRealizadas.push(idLicao);
-    }
+  function EnviarReporte() {}
 
-    function EnviarReporte() { }
+  function CadastrarAmigo(idAmigo) {
+    this.listaAmigos.push(idAmigo);
+  }
 
-    function CadastrarAmigo(idAmigo) {
-        this.listaAmigos.push(idAmigo);
-    }
+  function RemoverAmigo(idAmigo) {
+    var index = this.listaAmigos.indexOf(idAmigo);
+    this.listaAmigos.splice(index, 1);
+  }
 
-    function RemoverAmigo(idAmigo) {
-        var index = this.listaAmigos.indexOf(idAmigo);
-        this.listaAmigos.splice(index, 1);
-    }
+  function AvaliarConteudo(idConteudo) {}
 
-    function AvaliarConteudo(idConteudo) { }
+  function EmitirCertificado() {}
 
-    function EmitirCertificado() { }
+  function CriarAnotacao(idLicao) {}
 
-    function CriarAnotacao(idLicao) { }
+  function removerAnotacao(idLicao) {}
 
-    function removerAnotacao(idLicao) { }
+  function ComprarItem(idItem) {}
 
-    function ComprarItem(idItem) { }
+  function EnviarPresente(idAmigo) {}
 
-    function EnviarPresente(idAmigo) { }
+  function ReceberPresente() {}
 
-    function ReceberPresente() { }
+  function MarcarConteudo(idLicao) {}
 
-    function MarcarConteudo(idLicao) { }
+  function DesmarcarConteudo(idLicao) {}
 
-    function DesmarcarConteudo(idLicao) { }
+  function CriarComentario(idLicao, texto) {}
 
-    function CriarComentario(idLicao, texto) { }
+  function ExcluirComentario(idComentario) {}
 
-    function ExcluirComentario(idComentario) { }
+  function AdquirirConquista() {}
 
-    function AdquirirConquista() { }
-
-    function FazerAnotacao(idLicao, texto) { }
-}
+  function FazerAnotacao(idLicao, texto) {}
+};
 
 module.exports = Usuario;
