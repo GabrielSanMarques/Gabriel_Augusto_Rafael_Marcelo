@@ -3,7 +3,7 @@ var router = express.Router();
 
 const Usuario = require('../bin/usuario');
 
-router.post('/criar_conta', (req, res) => {
+router.post('/', (req, res) => {
     usuario = new Usuario;
     console.log("Antes do IF");
     if (usuario.validarEmail(req.body.email)) {
@@ -18,7 +18,7 @@ router.post('/criar_conta', (req, res) => {
     }
 })
 
-router.get('/criar_conta', function (req, res, next) {
+router.get('/', function (req, res, next) {
     console.log("GETTTTTTT");
     res.render('criar_conta');
 });
