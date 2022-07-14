@@ -1,11 +1,11 @@
 var express = require("express");
 var router = express.Router();
 
-router.post("/", (req, res) => {});
+router.post("/", (req, res) => { });
 
-/* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index");
+    req.params.id;
+    res.render("secao/:id/materia");
 });
 
 module.exports = router;

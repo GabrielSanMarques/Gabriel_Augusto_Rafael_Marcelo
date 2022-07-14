@@ -3,10 +3,9 @@ var router = express.Router();
 
 router.post("/", (req, res) => { });
 
-/* GET home page. */
 router.get("/", function (req, res, next) {
     if (req.session.logado) {
-        res.render("inicial");
+        res.render("perfil");
     } else {
         res.render("logar");
     }
