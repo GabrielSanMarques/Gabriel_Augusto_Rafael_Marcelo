@@ -17,7 +17,7 @@ function Usuario() {
   this.listaConquistas = [];
   this.listaAnotacoes = [];
 
-  function CriarUsuario(
+  this.CriarUsuario = function(
     email,
     senha,
     cpf = undefined,
