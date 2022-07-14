@@ -6,10 +6,15 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var criarContaRouter = require("./routes/criar_conta");
+//var indexRouter = require("./routes/index");
 var logarRouter = require("./routes/logar");
+var criarContaRouter = require("./routes/criar_conta");
+var homeRouter = require("./routes/home");
+var secaoRouter = require("./routes/secao");
+var homeRouter = require("./routes/home");
+var perfilRouter = require("./routes/perfil");
+var lojaRouter = require("./routes/loja");
+var rankingRouter = require("./routes/ranking");
 
 var app = express();
 
@@ -25,10 +30,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session({ secret: "abc" }));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+//app.use("/", indexRouter);
+app.use("/", logarRouter);
 app.use("/criar_conta", criarContaRouter);
-app.use("/logar", logarRouter);
+app.use("/home", homeRouter);
+app.use("/perfil", perfilRouter);
+app.use("/loja", lojaRouter);
+app.use("/ranking", rankingRouter);
+app.use("/home/secao/:id/materia", secaoRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
