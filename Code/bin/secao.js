@@ -3,24 +3,24 @@ function Secao(){
     this.nome = nome;
     this.descricao = descricao;
 
-    function CriarSecao(secao){
+    this.CriarSecao = function(secao){
         const db_Secaoes = JASON.parce(localStorage.getItem('db_Secaoes')) ?? []
         db_Secaoes.push(secao)
         localStorage.setItem("db_Secaoes",JSON.stringify(db_Secaoes))
     }
 
-    function LerSecao(){JASON.parce(localStorage.getItem('db_Secaoes')) ?? []}
+    this.LerSecao = function(){JASON.parce(localStorage.getItem('db_Secaoes')) ?? []}
 
-    function Remover(secao){
+    this.Remover = function(secao){
         const db_Secaoes = LerSecao()
         db_Secaoes.splice(secao.id,1)
         setLocalStorage(db_Secaoes)
     }
 
-    function Update(secao){
+    this.Update = function(secao){
             const db_Secaoes = LerSecao();
             db_Secaoes[secao.id] = secao
-    }       setLocalStorage(db_Secaoes)
-
+            setLocalStorage(db_Secaoes)
+    }
 
 }

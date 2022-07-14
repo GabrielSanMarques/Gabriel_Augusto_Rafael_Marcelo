@@ -4,27 +4,27 @@ const Materia = function () {
   this.descricao = descricao;
   this.explicacao = explicacao;
 
-  function CriarMateria(materia) {
+  this.CriarMateria = function(materia) {
     const db_Materias = JASON.parce(localStorage.getItem("db_Materias")) ?? [];
     db_Materias.push(materia);
     localStorage.setItem("db_Materias", JSON.stringify(db_Materias));
   }
 
-  function LerMateria() {
+  this.LerMateria = function() {
     JASON.parce(localStorage.getItem("db_Materias")) ?? [];
   }
 
-  function Remover(materia) {
+  this.Remover = function(materia) {
     const db_Materias = LerMateria();
     db_Materias.splice(materia.id, 1);
     setLocalStorage(db_Materias);
   }
 
-  function Update(materia) {
+  this.Update = function(materia) {
     const db_Materias = LerMateria();
     db_Materias[materia.id] = materia;
+    setLocalStorage(db_Materias);
   }
-  setLocalStorage(db_Materias);
 };
 
 const materiaExemplo = new Materia();

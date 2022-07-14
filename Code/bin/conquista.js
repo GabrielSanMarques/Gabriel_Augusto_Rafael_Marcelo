@@ -4,23 +4,23 @@ function Conquista(){
     this.cristais_bonus = cristais_bonus;
     this.xp_bonus = xp_bonus;
     
-    function CriarConquista(conquista){
+    this.CriarConquista = function(conquista){
         const db_Conquistas = JASON.parce(localStorage.getItem('db_Conquistas')) ?? []
         db_Conquistas.push(conquista)
         localStorage.setItem("db_Conquistas",JSON.stringify(db_Conquistas))
     }
 
-    function LerConquista(){JASON.parce(localStorage.getItem('db_Conquistas')) ?? []}
+    this.LerConquista = function(){JASON.parce(localStorage.getItem('db_Conquistas')) ?? []}
 
-    function Remover(conquista){
+    this.Remover = function(conquista){
         const db_Conquistas = LerConquista()
         db_Conquistas.splice(conquista.id,1)
         setLocalStorage(db_Conquistas)
     }
 
-    function Update(conquista){
+    this.Update = function(conquista){
             const db_Conquistas = LerConquista();
             db_Conquistas[conquista.id] = conquista
-    }       setLocalStorage(db_Conquistas)
-
+           setLocalStorage(db_Conquistas)
+    }
 }

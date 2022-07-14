@@ -1,13 +1,13 @@
 //import Endereco from "./endereco.js";
 
-const Usuario = function () {
+function Usuario() {
   this.id = 0;
   this.senha = "senha";
   this.email = "a";
   this.nivel = 0;
   this.cristais = 0;
   this.xp = 0;
-  this.endereco = new Endereco();
+  //this.endereco = new Endereco();
   this.cpf = "000.000.000-00";
   this.telefone = "(00) 0000-0000";
   this.certificado = null;
@@ -44,100 +44,102 @@ const Usuario = function () {
     this.endereco.cidade = cidade;
     this.endereco.estado = estado;
     this.endereco.cep = cep;
-  }
+  };
 
-  function validarEmail(email) {
+  this.validarEmail = function(email) {
     //if(nao existe){
     this.email = email; //verificar se existe no DB
     return true;
     //else {return false}
-  }
+  };
 
-  function LerUsuario() {
+  this.validarSenha = function(senha) {
+    //if(nao existe){
+    this.senha = senha; //verificar se existe no DB
+    return true;
+    //else {return false}
+  };
+
+  this.LerUsuario = function() {
     JSON.parse(localStorage.getItem("db_Usuarios")) ?? [];
   }
 
-  function Remover(usuario) {
+  this.Remover = function(usuario) {
     const db_Usuarios = LerUsuario();
     db_Usuarios.splice(usuario.id, 1);
     setLocalStorage(db_Usuarios);
   }
 
-  function Update(usuario) {
+  this.Update = function(usuario) {
     const db_Usuarios = LerUsuario();
     db_Usuarios[usuario.id] = usuario;
-  }
-  setLocalStorage(db_Usuarios);
-
-  function RealizarLogin(_login, _senha) {
-    if (_login === this.login && _senha === this.senha) return true;
-    return false;
+    setLocalStorage(db_Usuarios);
   }
 
-  function AlterarSenha(senhaAntiga, novaSenha) {}
+  this.AlterarSenha = function(senhaAntiga, novaSenha) {}
 
-  function AlterarEmail(emailAntigo, novoEmail) {
+  this.AlterarEmail = function(emailAntigo, novoEmail) {
     if (this.email === emailAntigo) this.email = novoEmail;
   }
 
-  function AlterarTelefone(novoTelefone) {
+  this.AlterarTelefone = function(novoTelefone) {
     this.telefone = novoTelefone;
   }
 
-  function AlterarEndereco() {}
+  this.AlterarEndereco = function() {}
 
-  function SubirNivel() {
+  this.SubirNivel = function() {
     this.nivel = this.nivel + 1;
   }
 
-  function GanharCristais(quantidade) {
+  this.GanharCristais = function(quantidade) {
     this.cristais = this.cristais + quantidade;
   }
 
-  function GanharXp(quantidade) {
+  this.GanharXp = function(quantidade) {
     this.xp = this.xp + quantidade;
   }
 
-  function RealizarLicao(idLicao) {
+  this.RealizarLicao = function(idLicao) {
     this.licoesRealizadas.push(idLicao);
   }
 
-  function EnviarReporte() {}
+  this.EnviarReporte = function() {}
 
-  function CadastrarAmigo(idAmigo) {
+  this.CadastrarAmigo = function(idAmigo) {
     this.listaAmigos.push(idAmigo);
   }
 
-  function RemoverAmigo(idAmigo) {
+  this.RemoverAmigo = function(idAmigo) {
     var index = this.listaAmigos.indexOf(idAmigo);
     this.listaAmigos.splice(index, 1);
   }
 
-  function AvaliarConteudo(idConteudo) {}
+  this.AvaliarConteudo = function(idConteudo) {}
 
-  function EmitirCertificado() {}
+  this.EmitirCertificado = function() {}
 
-  function CriarAnotacao(idLicao) {}
+  this.CriarAnotacao = function(idLicao) {}
 
-  function removerAnotacao(idLicao) {}
+  this.removerAnotacao = function(idLicao) {}
 
-  function ComprarItem(idItem) {}
+  this.ComprarItem = function(idItem) {}
 
-  function EnviarPresente(idAmigo) {}
+  this.EnviarPresente = function(idAmigo) {}
 
-  function ReceberPresente() {}
+  this.ReceberPresente = function() {}
 
-  function MarcarConteudo(idLicao) {}
+  this.MarcarConteudo = function(idLicao) {}
 
-  function DesmarcarConteudo(idLicao) {}
+  this.DesmarcarConteudo = function(idLicao) {}
 
-  function CriarComentario(idLicao, texto) {}
+  this.CriarComentario = function(idLicao, texto) {}
 
-  function ExcluirComentario(idComentario) {}
+  this.ExcluirComentario = function(idComentario) {}
 
-  function AdquirirConquista() {}
+  this.AdquirirConquista = function() {}
 
-  function FazerAnotacao(idLicao, texto) {}
+  this.FazerAnotacao = function(idLicao, texto) {}
 };
 
 module.exports = Usuario;

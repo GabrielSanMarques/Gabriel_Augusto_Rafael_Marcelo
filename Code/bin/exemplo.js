@@ -3,23 +3,23 @@ function Exemplo(){
     this.enunciado = enunciado;
     this.resposta = resposta;
 
-    function CriarExemplo(exemplo){
+    this.CriarExemplo = function(exemplo){
         const db_Exemplos = JASON.parce(localStorage.getItem('db_Exemplos')) ?? []
         db_Exemplos.push(exemplo)
         localStorage.setItem("db_Exemplos",JSON.stringify(db_Exemplos))
     }
 
-    function LerExemplo(){JASON.parce(localStorage.getItem('db_Exemplos')) ?? []}
+    this.LerExemplo = function(){JASON.parce(localStorage.getItem('db_Exemplos')) ?? []}
 
-    function Remover(exemplo){
+    this.Remover = function(exemplo){
         const db_Exemplos = LerExemplo()
         db_Exemplos.splice(exemplo.id,1)
         setLocalStorage(db_Exemplos)
     }
 
-    function Update(exemplo){
+    this.Update = function(exemplo){
             const db_Exemplos = LerExemplo();
             db_Exemplos[exemplo.id] = exemplo
-    }       setLocalStorage(db_Exemplos)
-
+           setLocalStorage(db_Exemplos)
+    }
 }
