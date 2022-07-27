@@ -11,8 +11,15 @@ const globalStyles = globalCss({
   body: {
     fontFamily: '$helvetica',
     height: '100%',
-  },
+    '&-ms-overflow-style': 'none', /* for Internet Explorer, Edge */
+    scrollbarWidth: 0, /* for Firefox */
+    overflowY: 'scroll',
+    '&::-webkit-scrollbar': {
+      display: 'none'
+    }
+  }
 })
+
 
 function App() {
   globalStyles();

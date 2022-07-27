@@ -6,14 +6,28 @@ class UserService {
     getUserRanking() {
         return Axios.get(API_URL + 'ranking', { headers: authHeader() })
         . then((response) => {
-            return response.data.resolve();
+            return response.data;
         });
     }
 
-    async getUserPoints(iduser: any) {
-        return await Axios.post(API_URL + 'get_points', 
+    getUserPoints(iduser: any) {
+        return Axios.post(API_URL + 'get_points', 
         { 
             id: iduser,
+        })
+        .then((response) => {
+            return response.data;
+        })
+    }
+
+    addPoints(userpoints: any) {
+        return Axios.post(API_URL + 'add_points',
+        {
+            id: userpoints.id,
+            points: userpoints.points,
+        })
+        .then((response) => {
+            return response.data;
         })
     }
 }

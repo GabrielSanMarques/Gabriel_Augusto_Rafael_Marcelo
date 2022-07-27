@@ -17,6 +17,7 @@ exports.getRanking = (req, res) => {
         nest: true,
     })
     .then((result) => {
+        console.log(result);
         res.status(200).send(result);
     })
     .catch((err) => {

@@ -204,7 +204,7 @@ export function FrameFormLogin() {
                             }
                         </StyledMessage>
                         <button type="submit" style={StyleButton}>Login</button>
-                        <StyledLink>
+                        <StyledLink as={Link} to="/cadastro">
                             Não possui uma conta? <span style={{color: '#2FA38E'}}>Registre-se</span>
                         </StyledLink>
                     </Form>
