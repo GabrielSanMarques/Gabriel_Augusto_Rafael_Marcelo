@@ -7,6 +7,7 @@ import { Cadastro } from './pages/Cadastro'
 import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { Perfil } from './pages/Perfil'
+import { Ranking } from './pages/Ranking'
 
 export function AppRoutes() {
     return (
@@ -15,7 +16,9 @@ export function AppRoutes() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/cadastro" element={<Cadastro />} />
                 <Route path="/profile" element={<Perfil />} />
+                <Route path="/ranking" element={<Ranking />} />
                 <Route path="/" element={<Home />} />
+
             </Routes>
         </Router>
     )

@@ -14,4 +14,16 @@ module.exports = (app) => {
         [authJwt.authJwt.verificaToken],
         controller.usuarioHome
     );
+    app.get(
+        "/api/data/ranking",
+        controller.getRanking
+    );
+    app.post(
+        "/api/data/get_points",
+        controller.getPoints
+    );
+    app.post(
+        "/api/data/add_points",
+        controller.addPoints
+    );
 }; 

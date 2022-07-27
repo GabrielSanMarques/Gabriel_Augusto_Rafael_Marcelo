@@ -32,8 +32,8 @@ exports.login = (req, res) => {
     })
     .then(usuario => {
         if (!usuario) {
-            return res.status(404).send({
-                message: "Usuário não encontrado!",
+            return res.status(401).send({
+                message: "Usuário e/ou senha inválidos!",
             })
         }
         var passwordIsValid = bcrypt.compareSync(
@@ -43,7 +43,7 @@ exports.login = (req, res) => {
         if (!passwordIsValid) {
             return res.status(401).send({
                 accessToken: null,
-                message: "Senha inválida!"
+                message: "Usuário e/ou senha inválidos!"
             });
         }
         var token = jwt.sign({ id: usuario.idusuarios }, config.secret, {
@@ -61,4 +61,4 @@ exports.login = (req, res) => {
             message: err.message    
         })
     })
-}
+};

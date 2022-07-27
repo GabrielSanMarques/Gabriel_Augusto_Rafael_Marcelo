@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import * as yup from "yup";
 import { styled } from "../../Theme";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AuthService from "../../services/auth.service";
 
 type ButtonProps = {
@@ -114,7 +114,23 @@ const Warning = styled('span', {
     fontSize: '1vw',
 })
 
+const StyledMessage = styled('div', {
+    display: 'block',
+    marginTop: '2%',
+    fontSize: '1vw',
+})
+
+const MessageSuccess = {
+    color: 'green',
+}
+
+const MessageFailure = {
+    color: 'red',
+}
+
 export function FrameFormLogin() {
+    const [message, setMessage] = useState();
+    const [successfull, setSucessfull] = useState(false);
 
     const navigate = useNavigate();
 
@@ -132,7 +148,14 @@ export function FrameFormLogin() {
                 navigate("/")
             },
             (error: any) => {
-                console.log(error);
+                const resMessage =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+                setSucessfull(false);
+                setMessage(resMessage);
             }
         );
     };
@@ -174,9 +197,14 @@ export function FrameFormLogin() {
                             component="span"
                             name="password"
                         />
+                        <StyledMessage>
+                            {
+                                message && 
+                                <span style={successfull ? MessageSuccess : MessageFailure}>{message}</span>
+                            }
+                        </StyledMessage>
                         <button type="submit" style={StyleButton}>Login</button>
-                        {/*<ButtonLogin style={StyleButton}></ButtonLogin>*/}
-                        <StyledLink as={Link} to="/cadastro">
+                        <StyledLink>
                             Não possui uma conta? <span style={{color: '#2FA38E'}}>Registre-se</span>
                         </StyledLink>
                     </Form>

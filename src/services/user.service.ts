@@ -1,10 +1,20 @@
 import Axios from "axios";
 import authHeader from "./auth-header";
-const API_URL = "http://localhost:8080/api/test/";
+const API_URL = "http://localhost:8080/api/data/";
 
 class UserService {
-    getUserContent() {
-        return Axios.get(API_URL + 'user', { headers: authHeader() });
+    getUserRanking() {
+        return Axios.get(API_URL + 'ranking', { headers: authHeader() })
+        . then((response) => {
+            return response.data.resolve();
+        });
+    }
+
+    async getUserPoints(iduser: any) {
+        return await Axios.post(API_URL + 'get_points', 
+        { 
+            id: iduser,
+        })
     }
 }
 
