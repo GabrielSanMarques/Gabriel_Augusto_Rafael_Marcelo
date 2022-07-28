@@ -28,7 +28,7 @@ export function Home() {
     return (
         <div>
             <FramePrincipal>
-                
+                <QuizComponent />
             </FramePrincipal>
             <Menu />
             <Background />
